@@ -28,7 +28,7 @@ def add_task():
     }
 
     tasks.append(task)
-    return jsonify(back_res(200, 1, '成功11'))
+    return jsonify(back_res(200, 1, '成功22'))
 
 def back_res(code = 0, data = [], msg = ''):
     return {
