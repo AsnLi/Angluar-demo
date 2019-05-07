@@ -1,3 +1,4 @@
+#coding=utf-8
 from flask import Flask, abort, request, jsonify
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def get_task():
     else:
         task_id = request.args['id']
         task = list(filter(lambda t: t['id'] == int(task_id), tasks))
-        return jsonify(back_res(200, task, '成功')) if task else jsonify(back_res())
+        return jsonify(back_res(200, task, '成功2')) if task else jsonify(back_res())
 
 @app.route('/addTask/', methods=['POST'])
 def add_task():
