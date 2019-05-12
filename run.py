@@ -1,17 +1,20 @@
 #coding=utf-8
 from flask import Flask, abort, request, jsonify
-app = Flask(__name__)
-
 from flask_cors import *  # 导入模块
+from db import dbconn
 
-tasks = []
+app = Flask(__name__)
 CORS(app, supports_credentials=True)
+tasks = []
 
 @app.route('/getTask', methods=['GET'])
 def get_task():
     query = request.args
     if not query or 'id' not in query:
-        return jsonify(tasks)
+        rows = dbconn.fetch_rows(
+            table='js_books',
+            limit='0,5')
+        return jsonify(rows)
     else:
         task_id = request.args['id']
         task = list(filter(lambda t: t['id'] == int(task_id), tasks))
