@@ -61,6 +61,7 @@ class MYSQL:
             db=self.dbname,
             charset=self.dbcharset,
             cursorclass=cursors.DictCursor)
+
         return connection
 
     def insert(self, table, data):
