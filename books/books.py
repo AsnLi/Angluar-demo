@@ -1,3 +1,4 @@
+#coding=utf-8
 from flask import Blueprint, request, abort, jsonify
 from response import back_res
 from db import dbconn
