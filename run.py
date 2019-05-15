@@ -1,7 +1,7 @@
 #coding=utf-8
 from flask import Flask, abort, request, jsonify
 from flask_cors import *  # 导入模块
-from books.books import books
+from books import books
 from db import dbconn
 
 app = Flask(__name__)
