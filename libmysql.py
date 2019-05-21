@@ -175,7 +175,7 @@ class MYSQL:
             if not condition:
                 where = '1'
             elif isinstance(condition, dict):
-                where = self.join_field_value(condition, ' AND ')
+                where = self.join_field_value(condition, ' AND ', 'like')
                 prepared.extend(condition.values())
             else:
                 where = condition
@@ -210,7 +210,7 @@ class MYSQL:
             if not condition:
                 where = '1'
             elif isinstance(condition, dict):
-                where = self.join_field_value(condition, ' AND ')
+                where = self.join_field_value(condition, ' AND ', 'like')
                 prepared.extend(condition.values())
             else:
                 where = condition
@@ -228,6 +228,7 @@ class MYSQL:
             if not prepared:
                 cursor.execute(sql)
             else:
+                prepared[0] = '%{}%'.format(prepared[0])
                 cursor.execute(sql, tuple(prepared))
 
             self.connection.commit()
@@ -245,11 +246,13 @@ class MYSQL:
 
             return cursor.fetchone() if fetchone else cursor.fetchall()
 
-    def join_field_value(self, data, glue=', '):
+    def join_field_value(self, data, glue=', ', mate = '='):
         sql = comma = ''
+
         for key in data.keys():
-            sql += "{}`{}` = %s".format(comma, key)
+            sql += "{}`{}` {} %s".format(comma, key, mate)
             comma = glue
+
         return sql
 
     def close(self):

@@ -1,6 +1,17 @@
-def back_res(code = 0, data = [], msg = ''):
+status = {
+    "code": '',
+    "message": 0
+}
+
+def set_status(code = 0, msg = ''):
+    status["code"] = code
+    status["message"] = msg
+    print(status["code"])
+
+def back_res(data = []):
+    print(status["code"], 1111)
     return {
-        "ResponseCode": code,
+        "ResponseCode": status["code"],
         "Data": data,
-        "ResponseMessage": msg
+        "ResponseMessage": status["message"]
     }
