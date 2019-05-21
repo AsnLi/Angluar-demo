@@ -228,7 +228,7 @@ class MYSQL:
             if not prepared:
                 cursor.execute(sql)
             else:
-                prepared[0] = '%{}%'.format(prepared[0])
+                prepared[0] = '%{}%'.format(prepared[0].encode("utf8"))
                 cursor.execute(sql, tuple(prepared))
 
             self.connection.commit()

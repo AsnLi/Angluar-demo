@@ -1,4 +1,5 @@
-#coding=utf-8
+# encoding: utf-8
+
 from flask import Blueprint, request, abort, jsonify
 from response import back_res
 from db import dbconn
@@ -29,7 +30,7 @@ def get_books():
             table=table_name,
             condition=filter,
             order=order,
-            limit=','.join([str((index - 1)*size), str(size)]) #条件拼接
+            limit=','.join([str((index - 1)*size), str(size)])
         )
         return jsonify(back_res({
             "rows": rows,
