@@ -28,7 +28,7 @@ def back_res(data = {}):
         for val in item:
             tmp = item[val]
             if(check_json_format(tmp)):
-                item[val] = json.loads(tmp)
+                item[val] = json.loads(tmp, encoding='utf-8')
 
     return data
     # print(status["code"], 1111)
