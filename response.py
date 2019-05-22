@@ -29,6 +29,7 @@ def back_res(data = {}):
         for val in item:
             tmp = item[val]
             if(check_json_format(tmp)):
+                print(11111)
                 item[val] = [{"label": 1}]
 
     return data
