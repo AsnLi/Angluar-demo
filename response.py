@@ -1,6 +1,7 @@
 #coding=utf-8
 
 import json
+from flask import jsonify
 
 status = {
     "code": '',
@@ -28,7 +29,7 @@ def back_res(data = {}):
         for val in item:
             tmp = item[val]
             if(check_json_format(tmp)):
-                item[val] = json.loads(tmp, encoding='utf-8')
+                item[val] = [{"label": 1}]
 
     return data
     # print(status["code"], 1111)
